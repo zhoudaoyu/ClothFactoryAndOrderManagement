@@ -2,6 +2,8 @@
 
 __metaclass__ = type
 
+from OrderItem import OrderItem
+
 class Order:
 	def __init__(self, client_id, order_num):
 		self.client_id = client_id
@@ -20,8 +22,26 @@ class Order:
 	def getOrderItemList(self):
 		return self.order_item_lst
 
-	def addOrderItem(self, order_item):
-		self.order_item_lst.append(order_item)
+	def addOrderItem(self):
+		while True:
+			addOrderItemOrNot = raw_input("Do you want to add Item?(Y/N)")
+			if addOrderItemOrNot == 'N':
+				break
+			elif addOrderItemOrNot == 'Y':
+				order_item = OrderItem(order_item_num)
+				cloth_type = raw_input("Please choose the cloth type you want to buy: ")
+				quantity = int(raw_input("Please choose the cloth type you want to buy: "))
+				order_item.setClothType(cloth_type)
+				order_item.setQuantity(quantity)
+				#Add this order item to order
+				self.order_item_lst.append(order_item)
+			else:
+				print "Please enter correct choose."
+				continue	
+		
 		
 	def removeOrderItem(self, order_item):
 		self.order_item_lst.remove(order_item)
+		
+	def listOrderItem(self):
+		pass
